@@ -8,9 +8,11 @@
 import Foundation
 
 struct Episode: Codable, Identifiable {
-    var id: Int
-    var name: String
-    var airDate: String
-    var episode: String
-    var characters: [String]
+    let id: Int
+    let name: String
+    let airDate: String
+    let episode: String
+    let characters: [String]
+    let url: String
+    let created: String
 }

@@ -11,7 +11,7 @@ struct CharacterDetailView: View {
     var character: Character
     
     var body: some View {
-        Form {
+        List {
             Section("name") {
                 Text(character.name)
             }
@@ -22,14 +22,21 @@ struct CharacterDetailView: View {
                 Text(character.gender)
             }
             Section("origin") {
+                Text(character.origin.name)
+                Text(character.origin.url)
+            }
+            Section("location") {
                 Text(character.location.name)
                 Text(character.location.url)
             }
-            Section("location") {
-                Text(character.name)
+            Section("image") {
+                AsyncImage(url: URL(string: character.image))
             }
-            Section("name") {
-                Text(character.name)
+
+            Section("Episodes") {
+                ForEach(character.episode, id: \.self) {
+                    Text($0)
+                }
             }
         }
     }
