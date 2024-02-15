@@ -10,8 +10,7 @@ import Foundation
 struct APIService {
     let urlString: String
     
-    func getJSON<T: Decodable>(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate ,
-                               keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) async throws ->T {
+    func getJSON<T: Decodable>() async throws ->T {
        
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
@@ -26,17 +25,14 @@ struct APIService {
             }
                 
             let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy =  dateDecodingStrategy
-                decoder.keyDecodingStrategy = keyDecodingStrategy
-        
+           
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
                 return decodedData
             } catch {
                 throw APIError.decodingError(error.localizedDescription)
             }
-        
-                
+            
         } catch {
             throw APIError.dataTaskError(error.localizedDescription)
         }

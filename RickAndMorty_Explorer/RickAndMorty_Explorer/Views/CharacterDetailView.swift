@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct CharacterDetailView: View {
+    var character: Character
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section("name") {
+                Text(character.name)
+            }
+            Section("status") {
+                Text(character.status)
+            }
+            Section("gender") {
+                Text(character.gender)
+            }
+            Section("origin") {
+                Text(character.location.name)
+                Text(character.location.url)
+            }
+            Section("location") {
+                Text(character.name)
+            }
+            Section("name") {
+                Text(character.name)
+            }
+        }
     }
 }
 
-#Preview {
-    CharacterDetailView()
-}
+
