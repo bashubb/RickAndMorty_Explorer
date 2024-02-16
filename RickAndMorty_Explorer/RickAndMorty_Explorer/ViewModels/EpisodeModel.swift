@@ -18,7 +18,7 @@ class EpisodeModel: ObservableObject {
     }
     
     @MainActor
-    func fetchCharacters(url: String) async {
+    func fetchEpisode(url: String) async {
         let apiService = APIService(urlString: url)
         isLoading.toggle()
         defer {

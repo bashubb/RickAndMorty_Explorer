@@ -10,6 +10,8 @@ import SwiftUI
 struct CharacterDetailView: View {
     var character: Character
     
+    
+    
     var body: some View {
         List {
             Section("name") {
@@ -34,8 +36,13 @@ struct CharacterDetailView: View {
             }
 
             Section("Episodes") {
-                ForEach(character.episode, id: \.self) {
-                    Text($0)
+                ForEach(character.episode, id: \.self) { episodeURL in
+                    NavigationLink {
+                        EpisodeDetailView(episodeURL: episodeURL)
+                    } label: {
+                        Text("Odcinek \(CharacterModel.trimEpisodeName(episodeURL))")
+                    }
+                    
                 }
             }
         }

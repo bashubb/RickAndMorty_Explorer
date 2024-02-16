@@ -32,4 +32,9 @@ class CharacterModel: ObservableObject {
             errorMessage = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to reproduce."
         }
     }
+    
+    static func trimEpisodeName(_ episodeURL: String) -> String {
+        let trimmedName = episodeURL.components(separatedBy: "/").last ?? ""
+        return trimmedName
+    }
 }

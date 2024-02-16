@@ -8,11 +8,47 @@
 import SwiftUI
 
 struct EpisodeDetailView: View {
+    @StateObject var episodeModel = EpisodeModel()
+    var episodeURL: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section("name") {
+                Text(episodeModel.episode?.name ?? "")
+            }
+            
+            Section("air date") {
+                Text(episodeModel.episode?.airDate ?? "")
+            }
+            
+            Section("Episode") {
+                Text(episodeModel.episode?.episode ?? "")
+            }
+            
+            Section("Liczba Bohaterów") {
+                Text("\(episodeModel.episode?.characters.count ?? 0) ")
+            }
+        }
+        .task {
+            await episodeModel.fetchEpisode(url: episodeURL)
+        }
+        .alert("Application Error", isPresented: $episodeModel.showAlert){
+            Button("OK") {}
+        } message: {
+            if let errorMessage = episodeModel.errorMessage {
+                Text(errorMessage)
+            }
+        }
+        .overlay {
+            if episodeModel.isLoading {
+                ProgressView()
+            }
+        }
     }
+    
+    
 }
 
-#Preview {
-    EpisodeDetailView()
-}
+//#Preview {
+//    EpisodeDetailView()
+//}

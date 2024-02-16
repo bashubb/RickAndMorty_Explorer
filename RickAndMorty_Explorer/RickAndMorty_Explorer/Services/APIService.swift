@@ -25,6 +25,7 @@ struct APIService {
             }
                 
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
            
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
