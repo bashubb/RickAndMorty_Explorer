@@ -13,7 +13,7 @@ struct EpisodeDetailView: View {
     
     var body: some View {
         Form {
-            Section("name") {
+            Section("Name") {
                 Text(episodeModel.episode?.name ?? "")
             }
             
@@ -25,13 +25,15 @@ struct EpisodeDetailView: View {
                 Text(episodeModel.episode?.episode ?? "")
             }
             
-            Section("Liczba Bohaterów") {
+            Section("Liczba Bohaterów w odcinku") {
                 Text("\(episodeModel.episode?.characters.count ?? 0) ")
             }
         }
         .task {
             await episodeModel.fetchEpisode(url: episodeURL)
         }
+        .navigationTitle(episodeModel.episode?.name ?? "")
+        .navigationBarTitleDisplayMode(.inline)
         .alert("Application Error", isPresented: $episodeModel.showAlert){
             Button("OK") {}
         } message: {
@@ -49,6 +51,4 @@ struct EpisodeDetailView: View {
     
 }
 
-//#Preview {
-//    EpisodeDetailView()
-//}
+

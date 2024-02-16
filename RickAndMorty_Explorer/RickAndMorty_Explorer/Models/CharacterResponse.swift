@@ -19,8 +19,9 @@ struct Info: Codable {
     let prev: String?
 }
 
-struct Character: Codable, Identifiable {
-    let id: Int
+struct Character: Comparable, Codable, Identifiable  {
+    
+    var id: Int
     let name: String
     let status: String
     let species: String
@@ -32,6 +33,14 @@ struct Character: Codable, Identifiable {
     let episode: [String]
     let url: String
     let created: String
+    
+    static func <(lhs: Character, rhs: Character) -> Bool {
+        lhs.id < rhs.id
+    }
+    
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 struct Origin: Codable {
