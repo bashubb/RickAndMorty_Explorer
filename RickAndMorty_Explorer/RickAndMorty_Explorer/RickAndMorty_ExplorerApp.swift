@@ -11,6 +11,8 @@ import SwiftUI
 struct RickAndMorty_ExplorerApp: App {
     
     init() {
+        let appearance = UINavigationBarAppearance()
+        
         var titleFont = UIFont.preferredFont(forTextStyle: .largeTitle) /// the default large title font
         titleFont = UIFont(
             descriptor:
@@ -33,11 +35,12 @@ struct RickAndMorty_ExplorerApp: App {
             size: compactFont.pointSize
         )
         
+        appearance.backgroundColor = UIColor(Color.gray.opacity(0.1))
+        appearance.largeTitleTextAttributes = [.font: titleFont]
+        appearance.titleTextAttributes = [.font: compactFont]
         
-        /// set the rounded font
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font: titleFont]
-        UINavigationBar.appearance().compactAppearance?.titleTextAttributes = [.font: compactFont]
-        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     var body: some Scene {

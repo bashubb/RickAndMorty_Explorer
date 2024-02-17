@@ -14,26 +14,25 @@ struct CharacterListView: View {
     
     
     var body: some View {
-        
         GeometryReader { gp in
-            HStack {
+            HStack(spacing:0) {
                 WelcomeView(characterModel: characterModel, isListLoaded: isListLoaded)
                 NavigationView {
-                    
-                    listOfCharacters
-                        .listStyle(.grouped)
-                        .navigationTitle("Postacie")
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                resetButton
+                        listOfCharacters
+                            .navigationTitle("Postacie")
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    resetButton
+                                }
+                                
+                                ToolbarItem(placement: .topBarTrailing) {
+                                    sortButton
+                                }
                             }
-                            
-                            ToolbarItem(placement: .topBarTrailing) {
-                                sortButton
-                            }
-                        }
                         .font(.system(size:17, weight:.regular,design:.rounded))
+                    
                 }
+                
                 .overlay {
                     if characterModel.isLoading {
                         ProgressView()
@@ -54,31 +53,29 @@ struct CharacterListView: View {
                     }
                 }
             }
-            .frame(width: gp.size.width * 2, alignment: .leading)
+            .frame(width: gp.size.width * 2)
             .offset(x: isListLoaded ?  -gp.size.width : 0)
-            .animation(.interpolatingSpring(stiffness: 40, damping: 7).delay(0.6),value: isListLoaded)
+            .animation(.interpolatingSpring(mass: 0.6, stiffness: 50, damping: 7).speed(1.5).delay(0.5),value: isListLoaded)
             
         }
     }
     
     ///View components
     @ViewBuilder var listOfCharacters: some View {
-        List{
-            ForEach(characterModel.characters) { character in
-                NavigationLink{
-                    CharacterDetailView(characterModel: characterModel, character: character)
-                } label : {
-                    HStack(spacing: 15) {
-                        Image(systemName: characterModel.isInFavorites(
-                            characterID: character.id) ? "heart.fill" : "heart")
-                        .foregroundStyle(
-                            characterModel.isInFavorites(characterID: character.id) ? .red : .primary)
-                        Text(character.name)
+        GeometryReader { geo in
+            ScrollView(showsIndicators: false) {
+                ForEach(characterModel.characters) { character in
+                    NavigationLink{
+                        CharacterDetailView(characterModel: characterModel, character: character)
+                    } label : {
+                        CustomCardView(characterModel: characterModel, character: character, geoproxy: geo)
+                            .padding()
                     }
-                    .padding(10)
                 }
             }
+            .frame(maxWidth: .infinity)
         }
+        .background(.ultraThickMaterial)
     }
     
     var resetButton: some View {
@@ -87,7 +84,7 @@ struct CharacterListView: View {
         } label : {
             HStack {
                 Image(systemName: "chevron.left")
-                Text("Reset")
+                Text("Powrót")
             }
         }
     }
@@ -114,7 +111,6 @@ struct CharacterListView: View {
     }
     
 }
-
 
 
 /// Welcome View
@@ -150,32 +146,32 @@ struct WelcomeView: View {
         Text("Rick and Morty")
             .frame(maxWidth:.infinity, alignment: .topLeading)
             .font(.system(size: 40, weight: .bold, design: .rounded))
-            .animation(.interpolatingSpring(stiffness: 50, damping: 7).delay(0.1), value: isListLoaded)
+            .animation(.interpolatingSpring(stiffness: 50, damping: 7).speed(2), value: isListLoaded)
             .padding(.bottom, 20)
         Image("RickAndMorty")
             .resizable()
             .scaledToFit()
-            .animation(.interpolatingSpring(stiffness: 50, damping: 7).delay(0.2), value: isListLoaded)
+            .animation(.interpolatingSpring(stiffness: 50, damping: 7).speed(2).delay(0.1), value: isListLoaded)
     }
     
     var openingText: some View {
         VStack(spacing: 30) {
             Text("Przy pomocy tej aplikacji możesz poznać bohaterów serialu Rick and Morty!")
-            Text("Twoja lista jest teraz pusta. Kliknij przycisk \"Load\" aby pobrać listę bohaterów.")
+            Text("Twoja lista jest teraz pusta. Dotknij przycisk \"Zaczynajmy\" aby pobrać listę bohaterów.")
                 .font(.callout)
         }
         .font(.system(size: 20, weight: .regular, design: .rounded))
-        .animation(.interpolatingSpring(stiffness: 50, damping: 7).delay(0.3), value: isListLoaded)
+        .animation(.interpolatingSpring(stiffness: 50, damping: 7).speed(2).delay(0.2), value: isListLoaded)
     }
     
     var loadingButton: some View {
-        Button("Load") {
+        Button("Zaczynajmy") {
             Task {
                 await characterModel.fetchCharacters()
             }
         }
         .buttonStyle(FirstCustomButton(image:"arrow.down.circle.dotted"))
-        .animation(.interpolatingSpring(stiffness: 50, damping: 7).delay(0.4), value: isListLoaded)
+        .animation(.interpolatingSpring(stiffness: 50, damping: 7).speed(2).delay(0.3), value: isListLoaded)
         
     }
 }
@@ -184,3 +180,5 @@ struct WelcomeView: View {
 #Preview {
     CharacterListView()
 }
+
+

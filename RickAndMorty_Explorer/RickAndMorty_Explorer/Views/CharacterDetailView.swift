@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct CharacterDetailView: View {
+    
     @State private var isInFavorites = false
     var characterModel: CharacterModel
     var character: Character
     
+    var locationURL: URL {
+        if let url = URL(string:character.location.url) {
+            return url
+        }
+        return URL(string:"")!
+    }
+    
+    var originURL: URL {
+        if let url = URL(string:character.origin.url) {
+            return url
+        }
+        return URL(string:"")!
+    }
+    
     
     var body: some View {
         List {
+            Section("zdjęcie") {
+                AsyncImage(url: URL(string: character.image))
+            }
+            
             Button {
                 characterModel.toggleInFavorites(characterID: character.id)
                 isInFavorites = characterModel.isInFavorites(characterID: character.id)
@@ -23,32 +42,29 @@ struct CharacterDetailView: View {
                      "Usuń z ulubionych" : "Dodaj do ulubionych" )
             }
             
-            Section("name") {
+            Section("imię") {
                 Text(character.name)
             }
             Section("status") {
                 Text(character.status)
             }
-            Section("gender") {
+            Section("płeć") {
                 Text(character.gender)
             }
-            Section("origin") {
+            Section("pochodzenie") {
                 Text(character.origin.name)
                 Text(character.origin.url)
-//                Link("Idź do strony", destination: URL(string: character.origin.url)!)
-//                    .buttonStyle(.bordered)
+                Link("Idź do strony", destination: originURL)
+                    .buttonStyle(.bordered)
             }
-            Section("location") {
+            Section("lokacja") {
                 Text(character.location.name)
                 Text(character.location.url)
-//                Link("Idź do strony", destination: URL(string: character.location.url)!)
-//                    .buttonStyle(.bordered)
-            }
-            Section("image") {
-                AsyncImage(url: URL(string: character.image))
+                Link("Idź do strony", destination: locationURL)
+                    .buttonStyle(.bordered)
             }
 
-            Section("Episodes") {
+            Section("Odcinki") {
                 ForEach(character.episode, id: \.self) { episodeURL in
                     NavigationLink {
                         EpisodeDetailView(episodeURL: episodeURL)
@@ -68,4 +84,6 @@ struct CharacterDetailView: View {
     }
 }
 
-
+#Preview {
+    CharacterListView()
+}

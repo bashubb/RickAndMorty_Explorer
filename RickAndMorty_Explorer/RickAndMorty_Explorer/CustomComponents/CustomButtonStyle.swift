@@ -24,15 +24,16 @@ struct FirstCustomButton: ButtonStyle {
                     .frame(height: 50)
             }
             HStack {
-                Image(systemName: image)
-                    .font(.largeTitle)
                 configuration.label
                     .font(.system(size: 30, weight: .medium, design: .rounded))
+                Image(systemName: image)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle(degrees: -90.0))
             }
             .foregroundColor(configuration.isPressed ? Color.blue : Color.white )
         }
         .scaleEffect(configuration.isPressed ? 0.8 : 1)
-        .animation(.default, value: configuration.isPressed)
+        .animation(.default.speed(2), value: configuration.isPressed)
     }
 }
 
