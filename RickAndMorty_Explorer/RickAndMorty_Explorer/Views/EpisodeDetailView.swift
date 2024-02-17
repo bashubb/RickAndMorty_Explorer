@@ -13,15 +13,15 @@ struct EpisodeDetailView: View {
     
     var body: some View {
         Form {
-            Section("Name") {
+            Section("Tytuł") {
                 Text(episodeModel.episode?.name ?? "")
             }
             
-            Section("air date") {
+            Section("Data publikacji") {
                 Text(episodeModel.episode?.airDate ?? "")
             }
             
-            Section("Episode") {
+            Section("Numer odcinka") {
                 Text(episodeModel.episode?.episode ?? "")
             }
             
