@@ -49,7 +49,7 @@ Nazwy pól, takie jak "Name", "Image", "Location" itp., zostały przetłumaczone
 -   Wczytywanie listy postaci z API.
 -   Wyświetlanie szczegółowych informacji o postaciach, takich jak status, płeć, pochodzenie, lokalizacja oraz lista odcinków, w których wystąpiła.
 -   Wyświetlanie szczegółowych informacji o odcinkach, takich jak data emisji i numer odcinka, wraz z liczbą bohaterów występujących w danym odcinku.
--   Możliwość dodawania i usuwania postaci do/z ulubionych.
+-   Możliwość dodawania i usuwania postaci do/z ulubionych.(Informacje zostają trwale zapisane w pamięci urządzenia)
 -   Sortowanie postaci alfabetycznie, według popularności oraz domyślnie.
 -   Obsługa błędów sieciowych i prezentacja komunikatów użytkownikowi. <br>
   
@@ -111,6 +111,6 @@ Nazwy pól, takie jak "Name", "Image", "Location" itp., zostały przetłumaczone
 <img src="https://github.com/bashubb/RickAndMorty_Explorer/blob/main/animation.gif" width="40%" height="40%">
 
 
-## Przyszłe Funkcje
+## 🎯 Przyszłe Funkcje
 
 W planach na przyszłość aplikacji jest zainteresowanie się tłumaczeniem tekstu za pomocą mechanizmu String localization. Chciałbym umożliwić użytkownikom korzystanie z aplikacji w różnych językach, zapewniając dostępność i użyteczność na szerszą skalę.
