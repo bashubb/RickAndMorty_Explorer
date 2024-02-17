@@ -8,31 +8,27 @@
 import SwiftUI
 
 struct CharacterListView: View {
+    
     @StateObject var characterModel = CharacterModel()
     @State private var isListLoaded = false
-    @State private var sortedByFavorite = false
-    
     
     var body: some View {
         GeometryReader { gp in
             HStack(spacing:0) {
                 WelcomeView(characterModel: characterModel, isListLoaded: isListLoaded)
                 NavigationView {
-                        listOfCharacters
-                            .navigationTitle("Postacie")
-                            .toolbar {
-                                ToolbarItem(placement: .topBarLeading) {
-                                    resetButton
-                                }
-                                
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    sortButton
-                                }
+                    listOfCharacters
+                        .navigationTitle("Postacie")
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                resetButton
                             }
+                            ToolbarItem(placement: .topBarTrailing) {
+                                sortButton
+                            }
+                        }
                         .font(.system(size:17, weight:.regular,design:.rounded))
-                    
                 }
-                
                 .overlay {
                     if characterModel.isLoading {
                         ProgressView()
@@ -91,22 +87,26 @@ struct CharacterListView: View {
     
     var sortButton: some View {
         Menu("Sortuj") {
-            Button {
-                if sortedByFavorite {
-                    withAnimation {
-                        characterModel.characters = characterModel.characters.sorted()
-                        sortedByFavorite = false
-                    }
-                } else {
-                    withAnimation {
-                        characterModel.characters = characterModel.sortByFavorites(array: characterModel.characters)
-                        sortedByFavorite = true
-                    }
+            Button("sortuj alfabetycznie") {
+                withAnimation {
+                    characterModel.characters = characterModel.sortByName(array: characterModel.characters)
                 }
-            } label: {
-                Text(sortedByFavorite ? "sortuj wg id " : "sortuj wg ulubionych")
             }
-            .disabled(characterModel.favoriteCharacters.isEmpty)
+            Button("sortuj wg popularnosci") {
+                withAnimation {
+                    characterModel.characters = characterModel.sortByPopular(array: characterModel.characters)
+                }
+            }
+            Button("sortuj wg ulubionych"){
+                withAnimation {
+                    characterModel.characters = characterModel.sortByFavorites(array: characterModel.characters)
+                }
+            }
+            Button("domyślna kolejność" ) {
+                withAnimation {
+                    characterModel.characters = characterModel.characters.sorted()
+                }
+            }
         }
     }
     

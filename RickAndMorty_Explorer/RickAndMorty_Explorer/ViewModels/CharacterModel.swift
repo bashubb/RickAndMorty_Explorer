@@ -84,6 +84,14 @@ class CharacterModel: ObservableObject {
         return sortedCharacters
     }
     
+    func sortByName(array: [Character]) -> [Character] {
+        return array.sorted { $0.name < $1.name }
+    }
+    
+    func sortByPopular(array: [Character]) -> [Character] {
+        return array.sorted { $0.episode.count > $1.episode.count }
+    }
+    
     static func trimEpisodeName(_ episodeURL: String) -> String {
         let trimmedName = episodeURL.components(separatedBy: "/").last ?? ""
         return trimmedName

@@ -67,6 +67,37 @@ class CharacterModelTests: XCTestCase {
         XCTAssertEqual(sortedCharacters.map { $0.id }, [3, 2, 1], "Characters should be sorted by favorites")
     }
     
+    func testSortByName() {
+        // Given
+        let characters: [Character] = [
+            Character(id: 1, name: "C", status: "", species: "", type: "", gender: "", origin: Origin(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: [], url: "", created: ""),
+            Character(id: 2, name: "A", status: "", species: "", type: "", gender: "", origin: Origin(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: [], url: "", created: ""),
+            Character(id: 3, name: "B", status: "", species: "", type: "", gender: "", origin: Origin(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: [], url: "", created: "")
+        ]
+        
+        // When
+        let sortedCharacters = characterModel.sortByName(array: characters)
+        
+        // Then
+        XCTAssertEqual(sortedCharacters.map { $0.name }, ["A", "B", "C"], "Characters should be sorted by name")
+    }
+
+    func testSortByPopular() {
+        // Given
+        let characters: [Character] = [
+            Character(id: 1, name: "", status: "", species: "", type: "", gender: "", origin: Origin(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: ["1", "2"], url: "", created: ""),
+            Character(id: 2, name: "", status: "", species: "", type: "", gender: "", origin: Origin(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: ["1"], url: "", created: ""),
+            Character(id: 3, name: "", status: "", species: "", type: "", gender: "", origin: Origin(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: ["1", "3", "2"], url: "", created: "")
+        ]
+        
+        // When
+        let sortedCharacters = characterModel.sortByPopular(array: characters)
+        
+        // Then
+        XCTAssertEqual(sortedCharacters.map { $0.id }, [3, 1, 2], "Characters should be sorted by popularity (number of episodes)")
+    }
+
+    
     func testTrimEpisodeName() {
         // Given
         let episodeURL = "https://rickandmortyapi.com/api/episode/123"

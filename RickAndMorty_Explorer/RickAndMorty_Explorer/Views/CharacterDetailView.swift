@@ -17,14 +17,14 @@ struct CharacterDetailView: View {
         if let url = URL(string:character.location.url) {
             return url
         }
-        return URL(string:"")!
+        return URL(string:"http://www.google.com/404")!
     }
     
     var originURL: URL {
         if let url = URL(string:character.origin.url) {
             return url
         }
-        return URL(string:"")!
+        return URL(string:"http://www.google.com/404")!
     }
     
     

@@ -27,7 +27,8 @@ struct CustomCardView: View {
                 Spacer()
                 Text(character.name)
                     .font(.headline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(.black)
+                    .multilineTextAlignment(.leading)
                 Spacer()
                 Image(systemName: characterModel.isInFavorites(
                     characterID: character.id) ? "heart.fill" : "heart")
