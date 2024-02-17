@@ -120,7 +120,7 @@ struct WelcomeView: View {
     var isListLoaded: Bool
     
     var body: some View {
-        GeometryReader { geo in
+        ZStack {
             VStack(spacing: 20) {
                 
                 titleImage
