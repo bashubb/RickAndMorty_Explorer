@@ -107,3 +107,5 @@ Nazwy pól, takie jak "Name", "Image", "Location" itp., zostały przetłumaczone
 
 
 ##  🖼️   Preview 
+
+<img src="https://github.com/bashubb/RickAndMorty_Explorer/blob/main/RickyAndMorty.gif" width="40%" height="40%">
