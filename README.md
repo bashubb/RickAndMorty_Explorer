@@ -81,7 +81,7 @@ Nazwy pól, takie jak "Name", "Image", "Location" itp., zostały przetłumaczone
     -   Sortowanie postaci wyświetlających się na liscie według różnych kryteriów
     -   Wykorzystanie niestandardowego przycisku.
     -   Stylowanie komponentów interfejsu użytkownika.
-    -   Obsługa błędów związanych z API.
+    -   Obsługa błędów związanych z API. (Użytkownik otrzymuje informacje za pomocą Alertu)
     -   Dodane zostały również subtelne animacje, które dodają dynamizmu i interaktywności interfejsowi, podnosząc tym samym poziom użytkowej atrakcyjności aplikacji. <br>
 
 
@@ -108,4 +108,9 @@ Nazwy pól, takie jak "Name", "Image", "Location" itp., zostały przetłumaczone
 
 ##  🖼️   Preview 
 
-<img src="https://github.com/bashubb/RickAndMorty_Explorer/blob/main/RickyAndMorty.gif" width="40%" height="40%">
+<img src="https://github.com/bashubb/RickAndMorty_Explorer/blob/main/animation.gif" width="40%" height="40%">
+
+
+## Przyszłe Funkcje
+
+W planach na przyszłość aplikacji jest zainteresowanie się tłumaczeniem tekstu za pomocą mechanizmu String localization. Chciałbym umożliwić użytkownikom korzystanie z aplikacji w różnych językach, zapewniając dostępność i użyteczność na szerszą skalę.
