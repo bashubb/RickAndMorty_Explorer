@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APIService {
+struct RickAndMortyDataService {
     let urlString: String
     
     func getJSON<T: Decodable>() async throws ->T {

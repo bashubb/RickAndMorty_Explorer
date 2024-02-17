@@ -19,7 +19,7 @@ class EpisodeModel: ObservableObject {
     
     @MainActor
     func fetchEpisode(url: String) async {
-        let apiService = APIService(urlString: url)
+        let apiService = RickAndMortyDataService(urlString: url)
         isLoading.toggle()
         defer {
             isLoading.toggle()

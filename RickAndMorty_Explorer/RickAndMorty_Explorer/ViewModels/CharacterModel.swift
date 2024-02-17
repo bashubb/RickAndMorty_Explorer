@@ -29,7 +29,7 @@ class CharacterModel: ObservableObject {
     
     @MainActor
     func fetchCharacters() async {
-        let apiService = APIService(urlString: urlStringCharacters)
+        let apiService = RickAndMortyDataService(urlString: urlStringCharacters)
         isLoading.toggle()
         defer {
             isLoading.toggle()
