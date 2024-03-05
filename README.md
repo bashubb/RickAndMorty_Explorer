@@ -1,116 +1,79 @@
 #  🚀   RickAndMorty Explorer <br>
 
 
+## 📝 Description
 
-## Wymagania <br>
+A simple application allowing users to browse information about characters and episodes from the "Rick and Morty" series. The app utilizes a public API available at: [Rick and Morty API](https://rickandmortyapi.com/).
 
+## 📁 Application Structure
 
-### ⚠️   Wymagane podstawowe
+The application consists of three main views:
 
--   Wykorzystanie SwiftUI do budowy interfejsu użytkownika
--   Implementacja obsługi sieci za pomocą Async/Await
--   Zastosowanie dowolnej architektury mobilnej
--   Minimalna wersja systemu docelowego: iOS 15.0
+-   **CharactersListView:** Displays a list of characters and allows sorting them by various criteria.
+-   **CharacterDetailsView:** Presents detailed information about the selected character and a list of episodes in which the character appears.
+-   **EpisodeDetailsView:** Displays basic information about the selected episode along with the number of characters appearing in it.
 
-###  👍   Mile widziane
+Other files contain code responsible for application logic, data management, user interface, and unit tests.
 
--   Implementacja architektury TCA (The Composable Architecture)
--   Użycie natywnych komponentów interfejsu użytkownika
--   Obsługa błędów podczas komunikacji z API
--   Funkcjonalność dodania postaci do ulubionych
--   Wykorzystanie Dependency Injection
--   Estetyczne i przemyślane stylowanie komponentów
--   Dodatkowe funkcjonalności niewymienione w wymaganiach
+Field names such as "Name", "Image", "Location", etc., have been translated into Polish to maintain consistency throughout the application and ensure that all UI elements are in one language. This prevents ambiguity or confusion, improving overall coherence and usability according to User Experience (UX) principles.
 
+## 📋 Features
 
+-   Loading character list from API.
+-   Displaying detailed information about characters, such as status, gender, origin, location, and a list of episodes they appeared in.
+-   Displaying detailed information about episodes, such as air date, episode number, along with the count of characters in that episode.
+-   Ability to add and remove characters from favorites (Information is permanently stored in device memory).
+-   Alphabetical, popularity, and default sorting of characters.
+-   Handling network errors and presenting messages to the user.
 
-##  📝   Opis
+## 🛠️ Technologies and Architecture
 
-Prosta aplikacja pozwalająca na przeglądanie informacji o postaciach i odcinkach z serialu "Rick and Morty". Aplikacja korzysta z publicznego API dostępnego pod adresem: [Rick and Morty API](https://rickandmortyapi.com/documentation/#rest). <br>
+-   SwiftUI: Used for building the user interface.
+-   Async/Await: Utilized for handling asynchronous network operations.
+-   UserDefaults: Used for storing information about favorite characters.
+-   MVVM: Implemented Model-View-ViewModel architecture for separating business logic from the user interface.
+-   Dependency Injection: Utilized for dependency separation and facilitating testing.
+-   Unit Tests: Implemented unit tests checking key application functionalities.
+-   Custom Button Style: Created a custom button style for better integration with the application's look.
+-   Native Components: Also utilized native SwiftUI components such as List, Form, NavigationLink, Alert, ProgressView, NavigationView, ScrollView, Toolbar, Button, Text, Image, Spacer, GeometryReader, etc.
 
+## Implementation Details
 
+-   SwiftUI: The application is entirely implemented using SwiftUI.
+-   Async/Await: Network operations are handled using async/await.
+-   Minimum Deployment Target iOS 15.0: The application is compatible with iOS 15.0 and newer.
+-   Aesthetic UI and Good UX Practices: The application interface is aesthetic, and handling various states (e.g., data loading, API errors) is well thought out and implemented according to good UX practices.
+-   3 Views: Three views are implemented: CharactersListView, CharacterDetailsView, EpisodeDetailsView.
+-   Error Handling: The application handles network errors and presents appropriate messages to the user.
 
-## 📁   Struktura Aplikacji
+## Additional Functionalities:
 
-Aplikacja składa się z trzech głównych widoków:
+-   Ability to add and remove characters from favorites.
+-   Sorting characters displayed on the list by various criteria.
+-   Utilization of a custom button.
+-   Styling user interface components.
+-   Handling API-related errors. (User receives information through an Alert)
+-   Subtle animations have also been added to add dynamism and interactivity to the interface, thereby enhancing the application's user attractiveness.
 
-1.  **CharactersListView**: Wyświetla listę postaci i umożliwia sortowanie ich według różnych kryteriów.
-2.  **CharacterDetailsView**: Prezentuje szczegółowe informacje o wybranej postaci oraz listę odcinków, w których postać występuje.
-3.  **EpisodeDetailsView**: Wyświetla podstawowe informacje o wybranym odcinku oraz liczbę postaci w nim występujących.
+## 🧪 Unit Tests
 
-Pozostałe pliki zawierają kod odpowiedzialny za logikę aplikacji, zarządzanie danymi, interfejs użytkownika oraz testy jednostkowe.
+-   **CharacterModelTests:** Contains unit tests checking functions related to adding/removing characters from favorites and sorting characters.
 
-Nazwy pól, takie jak "Name", "Image", "Location" itp., zostały przetłumaczone na język polski, aby zachować spójność w całej aplikacji i zapewnić, że wszystkie elementy interfejsu użytkownika są w jednym języku. Dzięki temu użytkownicy nie doświadczają niejednoznaczności ani dezorientacji, co poprawia ogólną spójność i użyteczność aplikacji zgodnie z zasadami User Experience (UX). <br>
+## 💻📱 Hardware Requirements
 
+-   iOS 15.0 or newer.
+-   Compatibility with iPhone and iPad.
 
+## 🔌 Setup Instructions
 
-## 📋   Funkcje
+1.  Clone the repository.
+2.  Open the project in Xcode.
+3.  Run the application on the simulator or a physical device.
 
--   Wczytywanie listy postaci z API.
--   Wyświetlanie szczegółowych informacji o postaciach, takich jak status, płeć, pochodzenie, lokalizacja oraz lista odcinków, w których wystąpiła.
--   Wyświetlanie szczegółowych informacji o odcinkach, takich jak data emisji i numer odcinka, wraz z liczbą bohaterów występujących w danym odcinku.
--   Możliwość dodawania i usuwania postaci do/z ulubionych.(Informacje zostają trwale zapisane w pamięci urządzenia)
--   Sortowanie postaci alfabetycznie, według popularności oraz domyślnie.
--   Obsługa błędów sieciowych i prezentacja komunikatów użytkownikowi. <br>
-  
-
-
-##  🛠️    Technologie i architektura
-
--   **SwiftUI**: Wykorzystano do budowy interfejsu użytkownika.
--   **Async/Await**: Użyto do obsługi asynchronicznych operacji sieciowych.
--   **UserDefaults**: do przechowywania informacji o ulubionych bohaterach.
--   **MVVM**: Zastosowano architekturę Model-View-ViewModel do separacji logiki biznesowej od interfejsu użytkownika.
--   **Dependency Injection**: Wykorzystano wstrzykiwanie zależności do oddzielenia odpowiedzialności oraz ułatwienia testowania.
--   **Unit Tests**: Zaimplementowano testy jednostkowe sprawdzające funkcjonalności kluczowe aplikacji.
--   **Custom Button Style**: Stworzono niestandardowy styl przycisku do lepszego dopasowania do wyglądu aplikacji.
--   **Natywne komponenty**: Wykorzystano także natywne komponenty SwiftUI, takie jak `List`, `Form`, `NavigationLink`, `Alert`, `ProgressView`, `NavigationView`, `ScrollView`, `Toolbar`, `Button`, `Text`, `Image`, `Spacer`, `GeometryReader`, itp. <br>
-
-
-
-## ✅   Wymagania spełnione
-
--   **SwiftUI**: Aplikacja została w całości zaimplementowana przy użyciu SwiftUI.
--   **Async/Await**: Obsługa operacji sieciowych z wykorzystaniem async/await.
--   **Minimum Deployment Target iOS 15.0**: Aplikacja jest kompatybilna z iOS 15.0 i nowszymi.
--   **Estetyczny UI i dobre praktyki UX**: Interfejs aplikacji jest estetyczny, a obsługa różnych stanów (np. wczytywanie danych, błędy z API) została przemyślana i zaimplementowana zgodnie z dobrymi praktykami UX.
--   **3 widoki**: Zaimplementowano trzy widoki: `CharactersListView`, `CharacterDetailsView`, `EpisodeDetailsView`.
--   **Obsługa błędów**: Aplikacja obsługuje błędy sieciowe i prezentuje użytkownikowi odpowiednie komunikaty w przypadku wystąpienia problemów.
--   **Dodatkowe funkcjonalności Nice to Have**:
-    -   Możliwość dodawania i usuwania postaci do/z ulubionych.
-    -   Sortowanie postaci wyświetlających się na liscie według różnych kryteriów
-    -   Wykorzystanie niestandardowego przycisku.
-    -   Stylowanie komponentów interfejsu użytkownika.
-    -   Obsługa błędów związanych z API. (Użytkownik otrzymuje informacje za pomocą Alertu)
-    -   Dodane zostały również subtelne animacje, które dodają dynamizmu i interaktywności interfejsowi, podnosząc tym samym poziom użytkowej atrakcyjności aplikacji. <br>
-
-
-
-## 🧪   Testy jednostkowe
-
--   **CharacterModelTests**: Zawiera testy jednostkowe sprawdzające funkcje związane z dodawaniem/usuwaniem postaci do/z ulubionych oraz sortowaniem postaci. <br>
-
-
-
-## 💻📱   Wymagania sprzetowe
-
--   iOS 15.0 lub nowszy.
--   Kompatybilność z iPhone i iPad. <br>
-
-
-
-## 🔌   Instrukcja uruchomienia
-
-1.  Sklonuj repozytorium.
-2.  Otwórz projekt w Xcode.
-3.  Uruchom aplikację na symulatorze lub fizycznym urządzeniu. <br>
-
-
-##  🖼️   Preview 
+##  🖼️ Preview
 
 <img src="https://github.com/bashubb/RickAndMorty_Explorer/blob/main/animation.gif" width="40%" height="40%">
 
+## 🎯 Future Features
 
-## 🎯 Przyszłe Funkcje
-
-W planach na przyszłość aplikacji jest zainteresowanie się tłumaczeniem tekstu za pomocą mechanizmu String localization. Chciałbym umożliwić użytkownikom korzystanie z aplikacji w różnych językach, zapewniając dostępność i użyteczność na szerszą skalę.
+In future plans for the application, there is an interest in implementing text translation using the String localization mechanism. I would like to allow users to use the application in different languages, ensuring accessibility and usability on a broader scale.
